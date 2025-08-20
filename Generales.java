@@ -84,7 +84,7 @@ public class Generales
     //Index inicial, revisa el caracter ingresado y revisa qué posición le coresponde normalmente, funciona para Facil.
     public static int indexInicial(char current){
         int posInicial = 0;
-        if(Character.isDigit(current) == true){
+        if(Character.isDigit(current)){
          for(int i = 0; i<numeros.length;i++){
             if(current == numeros[i]){
                 posInicial = i;
@@ -104,35 +104,35 @@ public class Generales
     }
     // Devuelve mensaje codificado para fácil.
     public static String mensajeC(String palabra, int clave){
-        String Final ="";        
+        StringBuilder Final = new StringBuilder();
         for(int i = 0; i<palabra.length(); i++){
             if(Character.isDigit(palabra.charAt(i))){
-            Final += Numeros.devolucionNum(Numeros.indexFinalNum(indexInicial(palabra.charAt(i)), clave));
+            Final.append(Numeros.devolucionNum(Numeros.indexFinalNum(indexInicial(palabra.charAt(i)), clave)));
             }
             else if(Character.isWhitespace(palabra.charAt(i))){
-                Final+='@';
+                Final.append('@');
             }
             else{
-            Final+= Abecedario.devolucionABC(Abecedario.indexFinal(indexInicial(palabra.charAt(i)),clave));
+            Final.append(Abecedario.devolucionABC(Abecedario.indexFinal(indexInicial(palabra.charAt(i)), clave)));
             }
         }
-        return Final;
+        return Final.toString();
     }
     
     //hace el proceso inverso y devuelve la primera palabra
     public static String mensajeDc(String mensajeCifrado,int clave){
-        String Final = "";
+        StringBuilder Final = new StringBuilder();
         for(int i = 0; i<mensajeCifrado.length(); i++){
-            if(Character.isDigit(mensajeCifrado.charAt(i))== true){
-            Final += Numeros.devolucionNum(Numeros.procesoInvNu(indexInicial(mensajeCifrado.charAt(i)), clave));
+            if(Character.isDigit(mensajeCifrado.charAt(i))){
+            Final.append(Numeros.devolucionNum(Numeros.procesoInvNu(indexInicial(mensajeCifrado.charAt(i)), clave)));
             }
             else if(mensajeCifrado.charAt(i)=='@'){
-            Final += ' ';
+            Final.append(' ');
             }
             else{
-            Final += Abecedario.devolucionABC(Abecedario.procesoInv(indexInicial(mensajeCifrado.charAt(i)),clave));
+            Final.append(Abecedario.devolucionABC(Abecedario.procesoInv(indexInicial(mensajeCifrado.charAt(i)), clave)));
             }
         }
-        return Final;
+        return Final.toString();
     }
 }

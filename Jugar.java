@@ -1,3 +1,5 @@
+import java.sql.SQLOutput;
+
 public class Jugar extends Generales{
     public static void facil(){
         inicio();
@@ -13,6 +15,32 @@ public class Jugar extends Generales{
                 System.out.println("¡Perder la paciencia es perder la batalla!");
             }
         }
+    }
+    public static void palabraSimple(){
+        System.out.println("Vas a cifrar o descifrar[c/d]");
+        System.out.print("> ");
+        String intento = scan.nextLine();
+        intento = intento.toLowerCase();
+
+
+        if(intento.equals("c")){
+            System.out.print("Ingrese la palabra que quiere encriptar: ");
+            String palabra = scan.nextLine();
+            System.out.println("Ingrese la clave con la que lo quiere hacer: ");
+            int clave = scan.nextInt();
+            System.out.print("El mensaje cifrado es: ");
+            System.out.println(mensajeC(palabra,clave));
+        }
+        else if(intento.equals("d")){
+            System.out.print("Ingrese la palabra que quiere desencriptar: ");
+            String palabra = scan.nextLine();
+            System.out.println("Ingrese la clave con la que lo quiere hacer: ");
+            int clave = scan.nextInt();
+            System.out.print("El mensaje descifrado es: ");
+            System.out.println(mensajeDc(palabra,clave));
+        }
+        scan.close();
+
     }
     public static void medio(){
         System.out.println("*En este modo de juego tan solo tienes tres intentos, ¡Muy buena suerte!.");
